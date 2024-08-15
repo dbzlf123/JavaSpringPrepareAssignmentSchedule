@@ -14,14 +14,6 @@ public class ManagerResponseDto{
     private LocalDateTime RegistrationDate; // 등록 날짜
     private LocalDateTime ModificationDate; // 수정 날짜
 
-    public ManagerResponseDto(int managerId, String name, String email, LocalDateTime registrationDate, LocalDateTime modificationDate) {
-        this.managerId = managerId;
-        this.name = name;
-        this.email = email;
-        RegistrationDate = registrationDate;
-        ModificationDate = modificationDate;
-    }
-
     public ManagerResponseDto(Manager manager) {
         this.managerId = manager.getManagerId();
         this.name = manager.getName();

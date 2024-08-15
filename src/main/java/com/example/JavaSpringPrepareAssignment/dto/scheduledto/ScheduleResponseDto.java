@@ -15,24 +15,6 @@ public class ScheduleResponseDto{
     private LocalDateTime RegistrationDate; // 등록 날짜
     private LocalDateTime ModificationDate; // 수정 날짜
     private int managerId;
-    private String name;
-
-    public ScheduleResponseDto(int scheduleId, String toDo, LocalDateTime registrationDate, LocalDateTime modificationDate, int managerId) {
-        this.scheduleId = scheduleId;
-        this.toDo = toDo;
-        this.RegistrationDate = registrationDate;
-        this.ModificationDate = modificationDate;
-        this.managerId = managerId;
-    }
-
-    public ScheduleResponseDto(int scheduleId, String toDo, LocalDateTime registrationDate, LocalDateTime modificationDate, int managerId, String name) {
-        this.scheduleId = scheduleId;
-        this.toDo = toDo;
-        this.RegistrationDate = registrationDate;
-        this.ModificationDate = modificationDate;
-        this.managerId = managerId;
-        this.name = name;
-    }
 
     public ScheduleResponseDto(Schedule schedule) {
         this.scheduleId = schedule.getScheduleId();
@@ -42,7 +24,4 @@ public class ScheduleResponseDto{
         this.managerId = schedule.getManagerId();
     }
 
-    public ScheduleResponseDto(){
-
-    }
 }
