@@ -6,6 +6,7 @@ import com.example.JavaSpringPrepareAssignment.entity.Schedule;
 import com.example.JavaSpringPrepareAssignment.service.ScheduleService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,8 +23,8 @@ public class ScheduleController implements ManagementController {
     }
 
     @PostMapping("/schedules")
-    public ScheduleResponseDto createSchedule(@RequestBody @Valid ScheduleRequestDto requestDto){
-        return scheduleService.create(requestDto).getBody();
+    public ResponseEntity<ScheduleResponseDto> createSchedule(@RequestBody @Valid ScheduleRequestDto requestDto){
+        return ResponseEntity.ok(scheduleService.create(requestDto));
     }
 
     //단건 조회

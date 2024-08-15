@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 
-@Repository
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,7 +16,6 @@ public class Manager{
     private int managerId;
     private String name;
     private String email;
-
     private LocalDateTime RegistrationDate; // 등록 날짜
     private LocalDateTime ModificationDate; // 수정 날짜
 
@@ -27,6 +25,4 @@ public class Manager{
         this.RegistrationDate = requestDto.getRegistrationDate();
         this.ModificationDate = requestDto.getModificationDate();
     }
-
-
 }

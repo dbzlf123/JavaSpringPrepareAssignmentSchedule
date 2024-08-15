@@ -22,14 +22,14 @@ public class ScheduleService {
         this.scheduleRepository = scheduleRepository;
     }
 
-    public ResponseEntity<ScheduleResponseDto> create(@RequestBody @Valid ScheduleRequestDto requestDto){
+    public ScheduleResponseDto create(ScheduleRequestDto requestDto){
         Schedule schedule = new Schedule(requestDto);
-        return ResponseEntity.ok(new ScheduleResponseDto(scheduleRepository.create(schedule)));
+        return new ScheduleResponseDto(scheduleRepository.create(schedule));
     }
 
 
     //단건 조회
-    public ScheduleResponseDto getSchedule(@PathVariable int id){
+    public ScheduleResponseDto getSchedule(int id){
         Schedule schedule = scheduleRepository.findById(id);
         if(schedule != null){
             return new ScheduleResponseDto(scheduleRepository.findById(id));
@@ -39,18 +39,18 @@ public class ScheduleService {
     }
 
     //다중 조회
-    public List<ScheduleResponseDto> getSchedules(@RequestParam(required = false) int id,
-                                                  @RequestParam(required = false) String modificationDate){
+    public List<ScheduleResponseDto> getSchedules(int id,
+                                                  String modificationDate){
         return scheduleRepository.findByIdAndDate(id, modificationDate).stream().map(ScheduleResponseDto::new).toList();
     }
 
     //페이징 조회
-    public List<ScheduleResponseDto> getSchedulesByPaging(@RequestParam int pageNumber, @RequestParam int size){
+    public List<ScheduleResponseDto> getSchedulesByPaging(int pageNumber, int size){
         return scheduleRepository.findByPaging(pageNumber, size).stream().map(ScheduleResponseDto::new).toList();
     }
 
 
-    public ScheduleResponseDto updateSchedule(@RequestParam int id, @RequestParam String password, @RequestBody ScheduleRequestDto requestDto){
+    public ScheduleResponseDto updateSchedule(int id, String password, ScheduleRequestDto requestDto){
         Schedule schedule = scheduleRepository.findById(id);
         if(schedule != null){
             if(!schedule.getPassword().equals(password)) throw new PasswordMismatchException(id + " 의 " + "패스워드가 올바르지 않습니다.");
@@ -63,7 +63,7 @@ public class ScheduleService {
         }
     }
 
-    public String deleteSchedule(@RequestParam int id, @RequestParam String password){
+    public String deleteSchedule(int id, String password){
         Schedule schedule = scheduleRepository.findById(id);
         if(schedule != null){
             if(!schedule.getPassword().equals(password)) throw new IllegalArgumentException("패스워드가 올바르지 않습니다.");

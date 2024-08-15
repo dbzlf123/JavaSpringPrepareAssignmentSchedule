@@ -8,14 +8,12 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 
-@Repository
 @Getter
 @Setter
 @NoArgsConstructor
 public class Schedule{
 
     private int scheduleId;
-
     private String toDo;
     private String password;
     private LocalDateTime RegistrationDate; // 등록 날짜

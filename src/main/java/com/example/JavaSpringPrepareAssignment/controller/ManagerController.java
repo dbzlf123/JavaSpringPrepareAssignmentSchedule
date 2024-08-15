@@ -4,6 +4,8 @@ import com.example.JavaSpringPrepareAssignment.dto.managerdto.ManagerRequestDto;
 import com.example.JavaSpringPrepareAssignment.dto.managerdto.ManagerResponseDto;
 import com.example.JavaSpringPrepareAssignment.entity.Manager;
 import com.example.JavaSpringPrepareAssignment.service.ManagerService;
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,8 +21,8 @@ public class ManagerController implements ManagementController {
     }
 
     @PostMapping("/managers")
-    public ManagerResponseDto createManager(@RequestBody ManagerRequestDto requestDto){
-        return  managerService.create(requestDto).getBody();
+    public ResponseEntity<ManagerResponseDto> createManager(@Valid @RequestBody ManagerRequestDto requestDto){
+        return ResponseEntity.ok(managerService.create(requestDto));
     }
 
     @GetMapping("/managers/{id}")

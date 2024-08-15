@@ -23,7 +23,6 @@ import java.util.Optional;
 public class ManagerRepositoryImpl implements ManagerRepository {
 
     private final JdbcTemplate jdbcTemplate;
-
     public ManagerRepositoryImpl(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }

@@ -14,23 +14,22 @@ import java.util.List;
 @Service
 public class ManagerService {
 
-    //private final JdbcTemplate jdbcTemplate;
     private final ManagerRepository managerRepository;
 
     public ManagerService(ManagerRepository managerRepository) {
         this.managerRepository = managerRepository;
     }
 
-    public ResponseEntity<ManagerResponseDto> create(@Valid @RequestBody ManagerRequestDto requestDto){
+    public ManagerResponseDto create(ManagerRequestDto requestDto){
         Manager manager = new Manager(requestDto);
-        return ResponseEntity.ok(new ManagerResponseDto( managerRepository.create(manager)));
+        return new ManagerResponseDto( managerRepository.create(manager));
     }
 
     public List<ManagerResponseDto> getLists(){
         return managerRepository.findAll().stream().map(ManagerResponseDto::new).toList();
     }
 
-    public Manager update(@PathVariable int id, @RequestBody ManagerRequestDto requestDto){
+    public Manager update(int id, ManagerRequestDto requestDto){
         Manager manager = managerRepository.findById(id);
 
         if(manager != null){
@@ -42,7 +41,7 @@ public class ManagerService {
        }
     }
 
-    public String delete(@PathVariable int id){
+    public String delete(int id){
 
         Manager manager = managerRepository.findById(id);
         if (manager != null) {
